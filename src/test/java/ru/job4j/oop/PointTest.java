@@ -29,4 +29,11 @@ public class PointTest {
         double rsl = a.distance(b);
         assertThat(rsl, closeTo(5.38, 0.01));
     }
+
+    @Test
+    public void when535to878then58() {
+        Point a = new Point(5, 3, 5);
+        Point b = new Point(8, 7, 8);
+        assertThat(a.distance3d(b), closeTo(5.83, 0.01));
+    }
 }
