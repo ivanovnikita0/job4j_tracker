@@ -31,33 +31,26 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] rsl = new Item[this.size];
-        int n = 0;
-        for (Item item : items) {
-            if (item != null) {
-                rsl[n] = item;
-                n++;
-            }
-        }
-        return Arrays.copyOf(rsl, this.size);
+        return Arrays.copyOf(items, size);
     }
 
     public Item[] findByName(String key) {
-        Item[] rsl = new Item[this.size];
-        int n = 0;
-        for (Item item : items) {
-            if (item != null && key.equals(item.getName())) {
-                    rsl[n] = item;
-                    n++;
-                }
+        Item[] rsl = new Item[size];
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            Item item = items[i];
+            if (key.equals(item.getName())) {
+                rsl[count] = item;
+                count++;
             }
-            return Arrays.copyOf(rsl, n);
         }
+        return Arrays.copyOf(rsl, count);
+    }
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
         if (index != -1) {
-        items[index].setName(item.getName());
+            items[index].setName(item.getName());
         }
         return index != -1;
     }
