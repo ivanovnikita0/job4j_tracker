@@ -43,7 +43,6 @@ public class StartUI {
                 new NameFindAction(output),
                 new ExitAction(output)
         );
-
         new StartUI(output).init(input, tracker, actions);
     }
 }
