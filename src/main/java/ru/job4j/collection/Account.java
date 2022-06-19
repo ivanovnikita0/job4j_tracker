@@ -30,7 +30,6 @@ public class Account {
         return Objects.hash(passport);
     }
 
-    @SuppressWarnings("checkstyle:OperatorWrap")
     @Override
     public String toString() {
         return "Account{"
