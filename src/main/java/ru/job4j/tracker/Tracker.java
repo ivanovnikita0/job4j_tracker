@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Tracker {
     private final List<Item> items = new ArrayList<>();
-    private int ids = 0;
+    private int ids = 1;
 
     public Tracker() {
     }
@@ -21,7 +21,7 @@ public class Tracker {
         int rsl = -1;
         for (Item item : items) {
             if (item.getId() == id) {
-                rsl = id;
+                rsl = items.indexOf(item);
                 break;
             }
         }
@@ -61,7 +61,7 @@ public class Tracker {
         int index = indexOf(id);
         boolean rs = index != -1;
         if (rs) {
-            items.remove(id);
+            items.remove(index);
         }
         return rs;
     }
