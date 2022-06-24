@@ -52,20 +52,20 @@ public class JobTest {
     public void whenComparatorByDescNameAndDescPriority() {
         Comparator<Job> cmpNamePriority = new JobDescByName().thenComparing(new JobDescByPriority());
         int rsl = cmpNamePriority.compare(
-                new Job("B", 0),
+                new Job("A", 0),
                 new Job("A", 1)
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl, greaterThan(0));
     }
 
     @Test
     public void whenComparatorByAscNameAndAscPriority() {
         Comparator<Job> cmpNamePriority = new JobAscByName().thenComparing(new JobAscByPriority());
         int rsl = cmpNamePriority.compare(
-                new Job("B", 0),
+                new Job("A", 0),
                 new Job("A", 1)
         );
-        assertThat(rsl, greaterThan(0));
+        assertThat(rsl, lessThan(0));
     }
 
     @Test
