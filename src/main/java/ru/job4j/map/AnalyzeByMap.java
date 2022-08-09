@@ -1,7 +1,6 @@
 package ru.job4j.map;
 
 import java.util.*;
-
 public class AnalyzeByMap {
     public static double averageScore(List<Pupil> pupils) {
         double score = 0;
