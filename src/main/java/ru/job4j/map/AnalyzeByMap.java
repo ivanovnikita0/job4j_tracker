@@ -2,6 +2,22 @@ package ru.job4j.map;
 
 import java.util.*;
 public class AnalyzeByMap {
+    private static Map<String, Integer> collData(List<Pupil> pupils) {
+        Map<String, Integer> temp = new LinkedHashMap<>();
+        for (Pupil pupil : pupils) {
+            for (Subject subject : pupil.subjects()) {
+                Integer score = temp.get(subject.name());
+                if (score != null) {
+                    score += subject.score();
+                } else {
+                    score = subject.score();
+                }
+                temp.put(subject.name(), score);
+            }
+        }
+        return temp;
+    }
+
     public static double averageScore(List<Pupil> pupils) {
         double score = 0;
         int count = 0;
@@ -27,21 +43,9 @@ public class AnalyzeByMap {
     }
 
     public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
-        Map<String, Integer> temp = new LinkedHashMap<>();
-        for (Pupil pupil : pupils) {
-            for (Subject subject : pupil.subjects()) {
-                Integer score = temp.get(subject.name());
-                if (score != null) {
-                    score += subject.score();
-                } else {
-                    score = subject.score();
-                }
-                temp.put(subject.name(), score);
-            }
-        }
         List<Label> rsl = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : temp.entrySet()) {
-            rsl.add(new Label(entry.getKey(), entry.getValue() / pupils.size()));
+        for (Map.Entry<String, Integer> entry : collData(pupils).entrySet()) {
+            rsl.add(new Label(entry.getKey(), (entry.getValue() / pupils.size())));
         }
         return rsl;
     }
@@ -60,20 +64,8 @@ public class AnalyzeByMap {
     }
 
     public static Label bestSubject(List<Pupil> pupils) {
-        Map<String, Integer> temp = new LinkedHashMap<>();
-        for (Pupil pupil : pupils) {
-            for (Subject subject : pupil.subjects()) {
-                Integer score = temp.get(subject.name());
-                if (score != null) {
-                    score += subject.score();
-                } else {
-                    score = subject.score();
-                }
-                temp.put(subject.name(), score);
-            }
-        }
         List<Label> rsl = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : temp.entrySet()) {
+        for (Map.Entry<String, Integer> entry : collData(pupils).entrySet()) {
             rsl.add(new Label(entry.getKey(), entry.getValue()));
         }
         rsl.sort(Comparator.naturalOrder());
