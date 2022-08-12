@@ -6,26 +6,26 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Empty line");
         }
         if (password.length() < 8) {
-            return "Length less than 8";
+            throw new IllegalArgumentException("Length less than 8");
         }
         if (password.length() > 32) {
-            return "Length over 32";
+            throw new IllegalArgumentException("Length over 32");
         }
         if (isBanString(password)) {
-            return "Do not use qwerty, 12345, password, admin, user";
+            throw new IllegalArgumentException("Do not use qwerty, 12345, password, admin, user");
         }
         if (password.toLowerCase().equals(password)) {
-            return "No uppercase";
+            throw new IllegalArgumentException("No uppercase");
         }
         if (password.toUpperCase().equals(password)) {
-            return "No lowercase";
+            throw new IllegalArgumentException("No lowercase");
         }
         if (!isNumber(password)) {
-            return "No numbers";
+            throw new IllegalArgumentException("No numbers");
         }
 
         if (!isSpecialS(password)) {
-            return "No special characters";
+            throw new IllegalArgumentException("No special characters");
         }
 
         return "PASSWORD GOOD";
